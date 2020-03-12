@@ -1,5 +1,5 @@
 "use strict";
-const user = require('./user');
+const friend = require('./friend');
 module.exports={
-  user
+  friend
 }
