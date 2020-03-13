@@ -1,25 +1,27 @@
 import React from 'react';
-
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
+import Navbar from './components/layout/NavBar';
+import Footer from './components/layout/Footer';
+import Landing from './components/layout/Landing';
+import Addfriend from './components/friends/Addfriend';
+import Friendlist from './components/friends/Friendlist';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <Router>
+        <div className="App">
+          <Navbar/>
+          <Route exact path="/" component={Landing}/>
+          <div className="container">
+            <Route exact path="/addfriend" component={Addfriend}/>
+            <Route exact path="/friendlist" component={Friendlist}/>
+          </div>
+          <Footer/>
+        </div>
+      </Router>
+
   );
 }
 

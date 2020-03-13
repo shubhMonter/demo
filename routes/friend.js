@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const friend = require('../models/friend');
+const validateAddfriendInput = require('../validation/addfriend');
 
 router.get('/friend/list', async (req, res) => {
   try {
@@ -15,6 +16,13 @@ router.get('/friend/list', async (req, res) => {
 });
 router.post('/friend/add', async (req, res) => {
   try {
+    console.log(req.body);
+    const { errors, isValid } = validateAddfriendInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const addfriend = new friend({
       name: req.body.name
     });
@@ -31,11 +39,16 @@ router.post('/friend/add', async (req, res) => {
 
 router.post('/friend/delete', async (req, res) => {
   try {
-    const del = await friend.findByIdAndRemove({
+    console.log(req.body);
+    const del = await friend.findOneAndDelete({
       _id: req.body.id
     });
     if (del) {
-      res.send({del,msg:'delete successfully'})
+      console.log(del);
+      res.send({
+        del,
+        msg: 'delete successfully'
+      })
     } else {
       res.send({
         error: 'friend not found'
