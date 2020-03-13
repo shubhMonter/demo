@@ -9,5 +9,5 @@ const FriendSchema = new Schema({
   }
 });
 
-const friend = mongoose.model("friend", FriendSchema);
+const friend = mongoose.model("user", FriendSchema);
 module.exports = friend

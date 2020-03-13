@@ -51,7 +51,7 @@ class FriendList extends Component {
 
     return (
       <div>
-        <h4 className="mb-4">FriendList Credentials</h4>
+        <h4 className="mb-4">FriendList</h4>
 
         <table className="table">
           <thead>
